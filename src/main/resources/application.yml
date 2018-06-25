@@ -1,0 +1,13 @@
+server:
+    port: 8080
+
+spring:
+  application:
+    name: UpdateElectricMessage
+  profiles:
+    active: prod
+  http:
+    multipart:
+      max-file-size: 100Mb
+      max-request-size: 100Mb
+
