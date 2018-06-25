@@ -1,6 +1,8 @@
 package com.bupt.updateelectric.service;
 
 import com.bupt.updateelectric.entity.DeviceData;
+import com.bupt.updateelectric.process.GetToken;
+import com.bupt.updateelectric.process.Publish;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -49,7 +51,7 @@ public class ImportExcelService {
 
             String deviceName = row.getCell(0).getStringCellValue();
             String dataKey;
-            if(row.getCell(1)==null || row.getCell(1).getStringCellValue().equals("性能事件")){
+            if(row.getCell(1)==null|| row.getCell(1).getStringCellValue().equals("") || row.getCell(1).getStringCellValue().equals("性能事件")){
                 continue;
             }else{
                 dataKey = row.getCell(1).getStringCellValue();
@@ -76,6 +78,11 @@ public class ImportExcelService {
 
             deviceData = new DeviceData(deviceName, dataKey, cycle, ts, maxData, normalData, minData);
             System.out.println(deviceData);
+
+            GetToken getToken = new GetToken();
+            String token = getToken.getToken(deviceData);
+            Publish publish = new Publish();
+            publish.postElectricData(deviceData,token);
         }
         return true;
     }
