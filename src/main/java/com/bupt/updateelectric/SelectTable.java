@@ -19,9 +19,9 @@ public class SelectTable {
             stmt = c.createStatement();
             ResultSet rs = stmt.executeQuery( "SELECT * FROM electric;" );
             while ( rs.next() ) {
-                int id = rs.getInt("customerId");
+                String deviceName = rs.getString("deviceName");
                 String  name = rs.getString("token");
-                System.out.println( "ID = " + id );
+                System.out.println( "DeviceName = " + deviceName );
                 System.out.println( "Token = " + name );
             }
             rs.close();

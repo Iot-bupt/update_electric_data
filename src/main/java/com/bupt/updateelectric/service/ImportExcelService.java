@@ -17,6 +17,9 @@ import java.text.SimpleDateFormat;
 @Service
 public class ImportExcelService {
 
+    private Publish publish = new Publish();
+    private GetToken getToken = new GetToken();
+
     public boolean importExcel(String fileName, MultipartFile file) throws Exception {
         boolean notNull = false;
 
@@ -79,9 +82,8 @@ public class ImportExcelService {
             deviceData = new DeviceData(deviceName, dataKey, cycle, ts, maxData, normalData, minData);
             System.out.println(deviceData);
 
-            GetToken getToken = new GetToken();
             String token = getToken.getToken(deviceData);
-            Publish publish = new Publish();
+
             publish.postElectricData(deviceData,token);
         }
         return true;
