@@ -2,7 +2,7 @@ package com.bupt.updateelectric.mqtt;
 
 public class Config {
 
-    public static String HOST = "tcp://39.104.84.131:1883";
+    public static String HOST = "tcp://39.104.189.84:30011";
     public static String RPC_DEVICE_ACCESSTOKEN = "ViWeZop4Jp4tvvEtwu6Z";
     public static String RPC_TOPIC = "v1/devices/me/rpc/request/+";
     public static String datatopic = "v1/devices/me/telemetry";

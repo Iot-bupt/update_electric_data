@@ -33,14 +33,27 @@ public class Publish {
             JSONObject tsAndValue = new JSONObject();
             JsonObject data = new JsonObject();
 
-            if(deviceData.getMaxData()!= null){
-                data.addProperty("最大"+deviceData.getDataKey(),deviceData.getMaxData());
-            }
+            if(deviceData.getCycle().equals("24小时"))
+            {
+                if(deviceData.getMaxData()!= null){
+                    data.addProperty("24小时最大"+deviceData.getDataKey(),deviceData.getMaxData());
+                }
 
-            data.addProperty(deviceData.getDataKey(),deviceData.getNormalData());
+                data.addProperty("24小时"+deviceData.getDataKey(),deviceData.getNormalData());
 
-            if(deviceData.getMinData()!= null){
-                data.addProperty("最小"+deviceData.getDataKey(),deviceData.getMinData());
+                if(deviceData.getMinData()!= null){
+                    data.addProperty("24小时最小"+deviceData.getDataKey(),deviceData.getMinData());
+                }
+            }else{
+                if(deviceData.getMaxData()!= null){
+                    data.addProperty("最大"+deviceData.getDataKey(),deviceData.getMaxData());
+                }
+
+                data.addProperty(deviceData.getDataKey(),deviceData.getNormalData());
+
+                if(deviceData.getMinData()!= null){
+                    data.addProperty("最小"+deviceData.getDataKey(),deviceData.getMinData());
+                }
             }
 
             tsAndValue.put("ts", deviceData.getTs());

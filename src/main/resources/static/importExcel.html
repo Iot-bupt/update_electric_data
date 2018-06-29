@@ -28,10 +28,10 @@
                         console.log("正在进行，请稍候");
                     },
                     success: function (data) {
-                        if (data.status == "true") {
+                        if (data == "true") {
                             alert("上传成功！");
                         }
-                        if (data.status == "error") {
+                        if (data == "error") {
                             alert(data.msg);
                         }
                         //$("#imgWait").hide();
